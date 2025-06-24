@@ -19,7 +19,8 @@ type Router struct {
 	bot *tgbotapi.BotAPI
 
 	// demoCommander
-	demoCommander Commander
+	demoCommander     Commander
+	logisticCommander Commander
 	// user
 	// access
 	// buy
@@ -54,7 +55,8 @@ func NewRouter(
 		// bot
 		bot: bot,
 		// demoCommander
-		demoCommander: demo.NewDemoCommander(bot),
+		demoCommander:     demo.NewDemoCommander(bot),
+		logisticCommander: logistic.NewDemoCommander(bot),
 		// user
 		// access
 		// buy
@@ -109,7 +111,7 @@ func (c *Router) handleCallback(callback *tgbotapi.CallbackQuery) {
 	case "demo":
 		c.demoCommander.HandleCallback(callback, callbackPath)
 	case "user":
-		break
+		c.shipCommander.HandleCallback(callback, callbackPath)
 	case "access":
 		break
 	case "buy":
@@ -179,8 +181,8 @@ func (c *Router) handleMessage(msg *tgbotapi.Message) {
 	switch commandPath.Domain {
 	case "demo":
 		c.demoCommander.HandleCommand(msg, commandPath)
-	case "user":
-		break
+	case "logistic":
+		c.logisticCommander.HandleCommand(msg, commandPath)
 	case "access":
 		break
 	case "buy":
