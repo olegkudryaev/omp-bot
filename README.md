@@ -5,7 +5,7 @@
 Сперва добавьте токен своего бота в .env:
 
 ```
-TOKEN=<здесь_ваш_токен_от_botfather>
+TOKEN = "7594732220:AAGABCKF30wTPTkFz_iv3Z45_izhjP6RIlk"
 ```
 
 И запустите:
