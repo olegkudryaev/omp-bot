@@ -16,6 +16,7 @@ type Commander interface {
 type DemoCommander struct {
 	bot                *tgbotapi.BotAPI
 	subdomainCommander Commander
+	shipCommander      Commander
 }
 
 func NewDemoCommander(

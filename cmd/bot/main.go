@@ -22,9 +22,6 @@ func main() {
 		log.Panic(err)
 	}
 
-	// Uncomment if you want debugging
-	// bot.Debug = true
-
 	log.Printf("Authorized on account %s", bot.Self.UserName)
 
 	u := tgbotapi.UpdateConfig{
@@ -37,7 +34,6 @@ func main() {
 	}
 
 	routerHandler := routerPkg.NewRouter(bot)
-
 	for update := range updates {
 		routerHandler.HandleUpdate(update)
 	}

@@ -5,4 +5,4 @@ type Ship struct {
 	Title string
 }
 
-var allEntities = make([]Ship, 10)
+var allEntities = make([]Ship, 0)
