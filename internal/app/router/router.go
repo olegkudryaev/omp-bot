@@ -15,37 +15,8 @@ type Commander interface {
 }
 
 type Router struct {
-	// bot
-	bot *tgbotapi.BotAPI
-
-	// demoCommander
-	demoCommander Commander
+	bot           *tgbotapi.BotAPI
 	shipCommander Commander
-	// user
-	// access
-	// buy
-	// delivery
-	// recommendation
-	// travel
-	// loyalty
-	// bank
-	// subscription
-	// license
-	// insurance
-	// payment
-	// storage
-	// streaming
-	// business
-	// work
-	// service
-	// exchange
-	// estate
-	// rating
-	// security
-	// cinema
-	// logistic
-	// product
-	// education
 }
 
 func NewRouter(
