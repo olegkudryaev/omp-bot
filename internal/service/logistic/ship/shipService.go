@@ -40,6 +40,9 @@ func (d DummyShipService) Create(s *Ship) (uint64, error) {
 		if ship.Id == s.Id && s.Id != 0 {
 			return 0, fmt.Errorf("корабль с id %d уже существует", s.Id)
 		}
+		if s.Id == 0 {
+			return 0, fmt.Errorf("не возможно создать корабль с id %d", s.Id)
+		}
 	}
 
 	newShip := Ship{
@@ -73,5 +76,5 @@ func (d DummyShipService) Remove(shipId uint64) (bool, error) {
 			return true, nil
 		}
 	}
-	return false, errors.New(fmt.Sprintf("корабль по Id %d не найден", shipId))
+	return false, fmt.Errorf("корабль по Id %d не найден", shipId)
 }

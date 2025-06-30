@@ -2,7 +2,6 @@ package ship
 
 import (
 	"encoding/json"
-	"fmt"
 	tgbotapi "github.com/go-telegram-bot-api/telegram-bot-api"
 	"github.com/ozonmp/omp-bot/internal/app/path"
 	"log"
@@ -39,15 +38,17 @@ func (s *ShipCommander) CallbackList(callback *tgbotapi.CallbackQuery, callbackP
 	ships, err := s.service.List(cursor, limit)
 
 	if err != nil {
-		s.sendMessage(callback.Message.Chat.ID, fmt.Sprintf("Вы получили весь список кораблей"))
+		s.sendMessage(callback.Message.Chat.ID, err.Error())
 		return
 	}
 
 	outputMsgText := "Корабли по запросу: \n"
+	var builder strings.Builder
 	for _, p := range ships {
-		outputMsgText += p.Title
-		outputMsgText += "\n"
+		builder.WriteString(p.Title)
+		builder.WriteString("\n")
 	}
+	outputMsgText = builder.String()
 
 	serializedData, _ := json.Marshal(CallbackListData{
 		Offset: int(cursor + limit),
